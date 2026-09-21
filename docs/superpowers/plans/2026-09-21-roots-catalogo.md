@@ -16,6 +16,7 @@ El cliente reemplazó el Excel por `LISTADO PRECIOS ROOTS 2.xlsx`: **55 producto
 
 - Los códigos válidos son **1..56 excepto el 10** (55 productos). Donde este plan diga "56 productos / códigos 1–56", léase "55 productos / códigos 1–56 salvo el 10". Esto afecta a `lib/menu.js` y `tests/menu.test.js` (Tarea 7), a `tools/optimize_images.py` (omitir la foto 10) y a las verificaciones de conteo (categorías: 30/11/11/3 en vez de 31/11/11/3).
 - `tools/build_data.py` **se implementó distinto al código de la Tarea 1**: lee la lista "ROOTS 2", empareja cada fila con su foto mediante `photo_code()` (fila < 10 → mismo número; ≥ 10 → +1), toma la categoría de los encabezados del Excel y falla si la numeración de la lista vuelve a moverse (productos ancla). Nombres en formato oración con acentos; se corrigió la errata "Salvadureño" → "Salvadoreño" (la etiqueta de la foto 55 dice Salvadoreño).
+- El script de pruebas es `node --test` (en Node 24, `node --test tests/` falla al recibir una carpeta). Además de las pruebas del plan se agregó `tests/api.test.js` (códigos HTTP de los endpoints con solicitudes simuladas).
 - "Chile hojuela 300 g" queda fuera del catálogo hasta que Roots confirme si sigue a la venta y su precio.
 
 ## Global Constraints

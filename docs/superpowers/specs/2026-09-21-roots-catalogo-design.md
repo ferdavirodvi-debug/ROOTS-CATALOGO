@@ -2,6 +2,11 @@
 
 Fecha: 2026-09-21 · Repo: `ferdavirodvi-debug/ROOTS-CATALOGO` · Producción: https://roots-catalogo.vercel.app
 
+> **Actualización (2026-09-21, durante la implementación):** la lista de precios vigente trae **55 productos** (se quitó el Chile
+> hojuela 300 g) y las fotos conservan su numeración; el código del producto es el **número de foto** (1–56 sin el 10). Donde este
+> documento diga "56 productos", léase 55. Categorías resultantes: 30 / 11 / 11 / 3. Los cambios del panel tardan 10–60 s en verse
+> (caché de la CDN de Blob), no son instantáneos.
+
 ## 1. Objetivo
 
 Catálogo web de productos Root's (condimentos, salsas, sacos, conservas) donde un cliente B2B navega por
