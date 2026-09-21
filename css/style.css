@@ -250,3 +250,54 @@ body.no-scroll { overflow: hidden; }
   .reveal.in, .card.reveal.in, .fab:not([hidden]), .fab.bump .fab-count, .cart-btn.bump .count { animation: none; }
   *, *::before, *::after { transition: none !important; }
 }
+
+/* ---------- Panel admin ---------- */
+body.admin { background: var(--green-soft); }
+.admin-login {
+  max-width: 420px; margin: 8vh auto 0; padding: 32px 24px; background: #fff; border-radius: var(--radius);
+  box-shadow: var(--shadow); text-align: center; display: grid; gap: 14px; justify-items: center;
+}
+.admin-login h1 { color: var(--green); font-weight: 800; font-size: 1.8rem; }
+.admin-login form { width: 100%; display: grid; gap: 10px; text-align: left; }
+.admin-login label { font-weight: 700; color: var(--gray); }
+.admin-login input {
+  height: 52px; padding: 0 18px; border: 2px solid var(--green-softer); border-radius: var(--pill); color: var(--brown);
+}
+.admin-login input:focus { border-color: var(--green); outline: none; }
+.admin-hint { margin: 0; font-size: .95rem; }
+
+.admin-head { position: sticky; top: 0; z-index: 30; background: #fff; box-shadow: 0 2px 10px rgba(46, 121, 0, .12); }
+.admin-head-in { max-width: 1100px; margin: 0 auto; padding: 10px 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+.admin-head h1 { color: var(--green); font-weight: 800; font-size: 1.4rem; margin-right: auto; }
+.admin-head .search { flex: 1 1 240px; order: 3; max-width: 380px; }
+.admin-head .search input { padding-left: 18px; background: var(--green-soft); }
+.admin-back { font-weight: 700; }
+
+.admin-note { max-width: 1100px; margin: 16px auto 0; padding: 14px 18px; border-radius: 16px; background: #FDE7E5; color: #8A1C15; font-weight: 700; }
+.admin-list { max-width: 1100px; margin: 12px auto 0; padding: 0 12px 110px; display: grid; gap: 10px; }
+.arow {
+  display: grid; grid-template-columns: 56px 1fr 132px; grid-template-areas: "img name name" "img price sold";
+  gap: 8px 12px; align-items: end; padding: 12px; background: #fff; border-radius: 18px; border: 2px solid transparent;
+}
+.arow img { grid-area: img; width: 56px; height: 56px; object-fit: contain; border-radius: 10px; border: 1px solid var(--line); align-self: start; }
+.aname { grid-area: name; } .aprice { grid-area: price; }
+.asold { grid-area: sold; display: inline-flex; align-items: center; gap: 8px; min-height: 48px; font-weight: 700; color: var(--gray); cursor: pointer; }
+.asold input { width: 26px; height: 26px; accent-color: #B3261E; }
+.afield { display: grid; gap: 2px; min-width: 0; }
+.afield label { font-size: .85rem; font-weight: 700; color: var(--gray); }
+.afield input {
+  height: 48px; width: 100%; padding: 0 14px; border: 2px solid var(--green-softer); border-radius: 14px; color: var(--brown); background: #fff;
+}
+.afield input:focus { border-color: var(--green); outline: none; }
+.afield input.bad { border-color: #B3261E; background: #FDE7E5; }
+@media (min-width: 800px) {
+  .arow { grid-template-columns: 56px 3fr 1fr auto; grid-template-areas: "img name price sold"; align-items: end; }
+  .arow img { align-self: center; }
+}
+
+.admin-bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; background: #fff; box-shadow: 0 -4px 16px rgba(0, 0, 0, .1);
+  padding: 12px 16px; display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;
+}
+.admin-bar #status { font-weight: 700; color: var(--gray); }
+.admin-bar .btn { min-width: 220px; min-height: 52px; }
