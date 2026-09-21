@@ -1,0 +1,7 @@
+{
+  "name": "roots-catalogo",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": { "test": "node --test", "serve": "node tools/serve.js" },
+  "dependencies": { "@vercel/blob": "^2.8.0" }
+}
