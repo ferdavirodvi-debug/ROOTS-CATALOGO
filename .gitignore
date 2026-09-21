@@ -12,3 +12,6 @@ Thumbs.db
 # Dependencias y Vercel
 node_modules/
 .vercel/
+
+# Páginas de prueba locales
+tools/_*.html

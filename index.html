@@ -3,23 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Root's — Catálogo</title>
-<meta name="description" content="Catálogo de productos Root's: condimentos, salsas, conservas y más.">
-<style>
-  :root { --bg:#ffffff; --ink:#1f2a1f; --soft:#5c6b5c; --green:#2f9e44; }
-  @media (prefers-color-scheme: dark) { :root { --bg:#111611; --ink:#eef4ee; --soft:#a9b8a9; --green:#51cf66; } }
-  * { box-sizing: border-box; }
-  body { margin:0; min-height:100vh; display:grid; place-items:center; padding:24px;
-         background:var(--bg); color:var(--ink); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; text-align:center; }
-  h1 { font-size:clamp(2.2rem,8vw,3.5rem); margin:0 0 8px; letter-spacing:-0.02em; }
-  h1 span { color:var(--green); }
-  p { margin:0; color:var(--soft); font-size:1.15rem; }
-</style>
+<title>Root's — Catálogo de productos</title>
+<meta name="description" content="Catálogo de productos Root's: condimentos, salsas, sacos y conservas. Arma tu pedido y envíalo por WhatsApp.">
+<meta name="theme-color" content="#E6F2DE">
+<link rel="icon" href="img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Glory:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <main>
-    <h1>Root<span>’s</span></h1>
-    <p>Nuestro catálogo llega muy pronto.</p>
-  </main>
+<a class="skip" href="#app-grid">Ir a los productos</a>
+<header class="site-header" id="app-header"></header>
+
+<section class="intro" id="app-intro">
+  <h1>Catálogo de productos</h1>
+  <ol class="steps" aria-label="Cómo hacer tu pedido">
+    <li><b>1</b> Elige tus productos</li>
+    <li><b>2</b> Toca “Agregar”</li>
+    <li><b>3</b> Envía tu pedido por WhatsApp</li>
+  </ol>
+</section>
+
+<nav class="cats" id="app-cats" aria-label="Categorías"></nav>
+
+<main class="wrap">
+  <div id="app-grid"></div>
+</main>
+
+<footer class="site-footer" id="app-footer"></footer>
+
+<div id="app-cart"></div>
+
+<script src="js/config.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/search.js"></script>
+<script src="data/products.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

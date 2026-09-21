@@ -1,0 +1,161 @@
+/* Root's — catálogo. Estilo tomado de foodsroots.com: Glory, verdes de marca, esquinas muy redondeadas. */
+:root {
+  --green: #2E7900;
+  --green-bright: #3AB54A;
+  --green-lime: #6DB83C;
+  --green-soft: #E6F2DE;
+  --green-softer: #D0E7C1;
+  --brown: #43220A;
+  --gray: #5C5C5C;
+  --line: #DCE6D4;
+  --bg: #FFFFFF;
+  --radius: 25px;
+  --pill: 50px;
+  --shadow: 0 6px 20px rgba(46, 121, 0, .12);
+  --maxw: 1240px;
+  font-size: 18px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--brown);
+  font-family: 'Roboto', system-ui, sans-serif; line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--green); }
+button, input { font-family: inherit; font-size: 1rem; }
+h1, h2, h3, .price, .brand { font-family: 'Glory', 'Roboto', system-ui, sans-serif; margin: 0; }
+:focus-visible { outline: 3px solid var(--green-bright); outline-offset: 2px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 16px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--green); color: #fff; padding: 10px 16px; border-radius: var(--pill); z-index: 100; }
+.skip:focus { left: 8px; }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 40; background: var(--green-soft);
+  transition: box-shadow .3s ease;
+}
+body.scrolled .site-header { box-shadow: 0 4px 16px rgba(46, 121, 0, .18); }
+.header-in {
+  max-width: var(--maxw); margin: 0 auto; padding: 10px 16px;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.logo { display: block; flex: 0 0 auto; }
+.logo img { height: 46px; width: auto; }
+.search {
+  flex: 1 1 260px; position: relative; order: 3; min-width: 0;
+}
+.search svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 22px; height: 22px; color: var(--gray); pointer-events: none; }
+.search input {
+  width: 100%; height: 52px; border: 2px solid transparent; border-radius: var(--pill);
+  background: #fff; padding: 0 18px 0 48px; color: var(--brown); transition: border-color .3s ease;
+}
+.search input:focus { border-color: var(--green); outline: none; }
+.cart-btn {
+  margin-left: auto; order: 2; position: relative; display: inline-flex; align-items: center; gap: 8px;
+  height: 52px; padding: 0 20px; border: 0; border-radius: var(--pill); cursor: pointer;
+  background: var(--green); color: #fff; font-family: 'Glory', sans-serif; font-weight: 700; font-size: 1.05rem;
+  transition: background .3s ease, transform .3s ease;
+}
+.cart-btn:hover { background: #256300; }
+.cart-btn svg { width: 24px; height: 24px; }
+.cart-btn .count {
+  min-width: 26px; height: 26px; padding: 0 7px; border-radius: 13px; background: #fff; color: var(--green);
+  display: inline-grid; place-items: center; font-size: .95rem;
+}
+@media (min-width: 760px) {
+  .search { order: 2; max-width: 520px; margin: 0 auto; }
+  .cart-btn { order: 3; margin-left: 0; }
+}
+
+/* ---------- Intro ---------- */
+.intro { max-width: var(--maxw); margin: 0 auto; padding: 22px 16px 6px; text-align: center; }
+.intro h1 { color: var(--green); font-weight: 800; font-size: clamp(1.9rem, 6vw, 2.8rem); letter-spacing: -.01em; }
+.steps {
+  list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px;
+  color: var(--gray); font-weight: 500;
+}
+.steps li { display: inline-flex; align-items: center; gap: 8px; }
+@media (max-width: 600px) {
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; font-size: .82rem; }
+  .steps li { flex-direction: column; text-align: center; gap: 4px; }
+}
+.steps b {
+  width: 30px; height: 30px; border-radius: 50%; background: var(--green-lime); color: #fff;
+  display: inline-grid; place-items: center; font-family: 'Glory', sans-serif; font-weight: 800;
+}
+
+/* ---------- Categorías ---------- */
+.cats {
+  max-width: var(--maxw); margin: 0 auto; padding: 14px 16px 6px;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+}
+.cat {
+  min-height: 52px; padding: 0 22px; border-radius: var(--pill); cursor: pointer;
+  border: 2px solid var(--green-softer); background: var(--green-soft); color: var(--green);
+  font-family: 'Glory', sans-serif; font-weight: 700; font-size: 1.05rem;
+  transition: background .3s ease, color .3s ease, border-color .3s ease, transform .3s ease;
+}
+.cat:hover { border-color: var(--green-lime); }
+.cat[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: #fff; }
+
+/* ---------- Grilla y tarjetas ---------- */
+.section-title {
+  color: var(--green); font-weight: 800; font-size: clamp(1.5rem, 4vw, 2rem);
+  text-align: center; margin: 30px 0 16px;
+}
+.count-line { text-align: center; color: var(--gray); margin: 18px 0 4px; }
+.grid { display: grid; gap: 16px; grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 640px) { .grid { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
+@media (min-width: 980px) { .grid { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 1200px) { .grid { grid-template-columns: repeat(5, 1fr); } }
+
+.card {
+  display: flex; flex-direction: column; background: #fff; border: 2px solid var(--line);
+  border-radius: var(--radius); padding: 12px 12px 14px; position: relative;
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--green-lime); }
+.card-img { aspect-ratio: 1 / 1; display: grid; place-items: center; background: #fff; border-radius: 16px; overflow: hidden; }
+.card-img img { width: 100%; height: 100%; object-fit: contain; }
+.card-name { margin: 10px 0 0; font-weight: 700; font-size: 1.15rem; line-height: 1.15; color: var(--gray); }
+.card-pres { margin: 2px 0 0; color: var(--gray); font-size: .95rem; }
+.price { margin: 8px 0 10px; color: var(--green); font-weight: 800; font-size: 1.5rem; line-height: 1; }
+.price small { font-family: 'Roboto', sans-serif; font-weight: 500; font-size: .8rem; color: var(--gray); }
+.card-buy { margin-top: auto; display: grid; gap: 8px; }
+.stepper {
+  display: grid; grid-template-columns: 52px 1fr 52px; height: 52px; border: 2px solid var(--green-softer);
+  border-radius: var(--pill); overflow: hidden; background: #fff;
+}
+.stepper button { border: 0; background: var(--green-soft); color: var(--green); font-size: 1.5rem; font-weight: 700; cursor: pointer; transition: background .3s ease; }
+.stepper button:hover { background: var(--green-softer); }
+.stepper input { width: 100%; min-width: 0; border: 0; text-align: center; font-weight: 700; font-size: 1.1rem; color: var(--brown); background: #fff; }
+.stepper input:focus { outline: none; background: var(--green-soft); }
+.btn {
+  min-height: 48px; padding: 0 16px; border: 0; border-radius: var(--pill); cursor: pointer;
+  background: var(--green); color: #fff; font-family: 'Glory', sans-serif; font-weight: 700; font-size: 1.1rem;
+  transition: background .3s ease, transform .3s ease;
+}
+.btn:hover:not(:disabled) { background: #256300; }
+.btn:active:not(:disabled) { transform: scale(.98); }
+.btn:disabled { background: #B9C4B0; cursor: not-allowed; }
+.in-cart { margin: 0; min-height: 1.2em; font-size: .9rem; font-weight: 700; color: var(--green); text-align: center; }
+.badge-sold {
+  position: absolute; top: 12px; left: 12px; z-index: 1; background: #B3261E; color: #fff; padding: 4px 12px;
+  border-radius: var(--pill); font-weight: 700; font-size: .85rem;
+}
+.card.sold-out .card-img { opacity: .55; }
+
+.empty { text-align: center; padding: 40px 16px; color: var(--gray); }
+.empty .btn { margin-top: 14px; padding: 0 28px; }
+
+/* ---------- Pie ---------- */
+.site-footer { margin-top: 48px; background: var(--green); color: #fff; }
+.footer-in { max-width: var(--maxw); margin: 0 auto; padding: 32px 16px 96px; display: grid; gap: 22px; text-align: center; }
+.footer-in h2 { font-size: 1.5rem; font-weight: 800; }
+.footer-in a { color: #fff; }
+.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; }
+.footer-note { opacity: .92; font-size: .95rem; margin: 0; }
