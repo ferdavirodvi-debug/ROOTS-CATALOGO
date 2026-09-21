@@ -49,7 +49,7 @@
     }).join('');
   }
 
-  function cardHtml(p) {
+  function cardHtml(p, i) {
     var inCart = state.cart[p.code] || 0;
     var buy = p.soldOut
       ? '<button class="btn" type="button" disabled>No disponible</button>'
@@ -60,7 +60,7 @@
         '</div>' +
         '<button class="btn add" type="button" data-act="add">Agregar</button>' +
         '<p class="in-cart" data-in-cart>' + (inCart ? 'En tu pedido: ' + inCart : '') + '</p>';
-    return '<article class="card' + (p.soldOut ? ' sold-out' : '') + '" data-code="' + p.code + '" role="listitem">' +
+    return '<article class="card reveal' + (p.soldOut ? ' sold-out' : '') + '" data-code="' + p.code + '" style="--i:' + (i % 5) + '" role="listitem">' +
       (p.soldOut ? '<span class="badge-sold">Agotado</span>' : '') +
       '<div class="card-img"><img src="' + esc(p.image) + '" alt="' + esc(p.name + ' ' + p.presentation) + '" width="640" height="640" ' + (state._eager-- > 0 ? '' : 'loading="lazy" ') + 'decoding="async"></div>' +
       '<h3 class="card-name">' + esc(p.name) + '</h3>' +
@@ -86,17 +86,18 @@
     if (state.category === 'todos' && !state.query.trim()) {
       grid.innerHTML = SITE_CONFIG.categorias.filter(function (c) { return c.key !== 'todos'; }).map(function (c) {
         var items = list.filter(function (p) { return p.category === c.key; });
-        return items.length ? '<h2 class="section-title">' + esc(c.label) + '</h2>' + gridHtml(items) : '';
+        return items.length ? '<h2 class="section-title reveal">' + esc(c.label) + '</h2>' + gridHtml(items) : '';
       }).join('');
     } else {
       grid.innerHTML = '<p class="count-line" aria-live="polite">' + list.length + (list.length === 1 ? ' producto' : ' productos') + '</p>' + gridHtml(list);
     }
+    observeReveals();
   }
 
   function renderFooter() {
     var c = SITE_CONFIG.contacto;
     $('#app-footer').innerHTML =
-      '<div class="footer-in">' +
+      '<div class="footer-in reveal">' +
         '<h2>¿Necesitas ayuda con tu pedido?</h2>' +
         '<div class="footer-links">' +
           '<a href="https://wa.me/' + SITE_CONFIG.whatsapp + '" target="_blank" rel="noopener">WhatsApp ' + esc(c.telefono) + '</a>' +
@@ -110,6 +111,22 @@
         '</div>' +
         '<p class="footer-note">Precios por unidad, ISV incluido.</p>' +
       '</div>';
+  }
+
+  // ---------- Animaciones de entrada ----------
+  // Al entrar en pantalla, los elementos .reveal reciben .in (una sola vez). Sin IntersectionObserver se muestran de inmediato.
+  var io = null;
+  if ('IntersectionObserver' in window) {
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  }
+  function observeReveals() {
+    Array.prototype.forEach.call(document.querySelectorAll('.reveal:not(.in)'), function (el) {
+      if (io) io.observe(el); else el.classList.add('in');
+    });
   }
 
   // ---------- Eventos ----------
@@ -241,8 +258,16 @@
     $('#cart-total').textContent = money(info.total);
   }
 
+  var lastCount = null;
+  function bump(el) {
+    el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump');
+    setTimeout(function () { el.classList.remove('bump'); }, 450);
+  }
+
   function updateCartUI() {
     var info = cartInfo();
+    if (lastCount !== null && info.count > lastCount) { bump($('#cart-fab')); bump($('#cart-btn')); }
+    lastCount = info.count;
     $('#cart-count').textContent = info.count;
     var fab = $('#cart-fab');
     fab.hidden = info.count === 0;
@@ -332,7 +357,7 @@
   }
 
   // ---------- Inicio ----------
-  renderHeader(); renderCats(); renderFooter(); buildCartShell(); bind(); bindCart();
+  renderHeader(); renderCats(); renderFooter(); buildCartShell(); bind(); bindCart(); observeReveals();
   loadCatalog().then(function (list) {
     state.products = list.slice().sort(function (a, b) { return a.code - b.code; });
     loadCart();
