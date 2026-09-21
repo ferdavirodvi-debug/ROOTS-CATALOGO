@@ -1,0 +1,14 @@
+# Material fuente (fotos originales pesadas y listas de precios): no van al repo
+PRODUCTOS CATALOGO/
+._*
+.DS_Store
+Thumbs.db
+
+# Secretos y config local
+.env
+.env.local
+.env*.local
+
+# Dependencias y Vercel
+node_modules/
+.vercel/
