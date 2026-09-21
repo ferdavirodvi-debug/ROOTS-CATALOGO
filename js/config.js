@@ -5,7 +5,7 @@ const SITE_CONFIG = {
   moneda: 'L',
   // Menú vivo (Vercel Blob). Se completa al conectar el Blob (Tarea 9).
   // Si está vacío o falla, se usa data/products.js como respaldo.
-  menuUrl: '',
+  menuUrl: 'https://r1hjuawv9xclv7pc.public.blob.vercel-storage.com/menu.json',
   categorias: [
     { key: 'todos', label: 'Todos' },
     { key: 'condimentos', label: 'Condimentos y especias' },
