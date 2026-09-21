@@ -159,3 +159,71 @@ body.scrolled .site-header { box-shadow: 0 4px 16px rgba(46, 121, 0, .18); }
 .footer-in a { color: #fff; }
 .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; }
 .footer-note { opacity: .92; font-size: .95rem; margin: 0; }
+
+/* ---------- Carrito ---------- */
+[hidden] { display: none !important; }
+body.no-scroll { overflow: hidden; }
+
+.fab {
+  position: fixed; right: 16px; bottom: 16px; z-index: 50; min-height: 64px; padding: 0 22px 0 18px;
+  display: inline-flex; align-items: center; gap: 10px; border: 0; border-radius: var(--pill); cursor: pointer;
+  background: var(--green); color: #fff; font-family: 'Glory', sans-serif; font-weight: 800; font-size: 1.15rem;
+  box-shadow: 0 8px 24px rgba(46, 121, 0, .35); transition: background .3s ease, transform .3s ease;
+}
+.fab:hover { background: #256300; transform: translateY(-2px); }
+.fab svg { width: 28px; height: 28px; }
+.fab-count {
+  min-width: 28px; height: 28px; padding: 0 8px; border-radius: 14px; background: #fff; color: var(--green);
+  display: inline-grid; place-items: center; font-size: 1rem;
+}
+
+.cart-overlay { position: fixed; inset: 0; z-index: 60; background: rgba(30, 20, 10, .45); }
+.cart-panel {
+  position: fixed; z-index: 70; top: 0; right: 0; bottom: 0; width: min(440px, 100%);
+  display: flex; flex-direction: column; background: #fff; box-shadow: -8px 0 30px rgba(0, 0, 0, .18);
+}
+.cart-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 14px 16px; background: var(--green-soft);
+}
+.cart-head h2 { color: var(--green); font-weight: 800; font-size: 1.6rem; }
+.cart-close {
+  min-height: 48px; padding: 0 18px; border: 2px solid var(--green); border-radius: var(--pill); cursor: pointer;
+  background: #fff; color: var(--green); font-family: 'Glory', sans-serif; font-weight: 700; font-size: 1.05rem;
+}
+.cart-close:hover { background: var(--green-soft); }
+.cart-body { flex: 1; overflow-y: auto; padding: 8px 16px; }
+.cart-empty { text-align: center; padding: 40px 8px; color: var(--gray); }
+.cart-empty .btn { margin-top: 14px; padding: 0 28px; }
+
+.line {
+  display: grid; grid-template-columns: 64px 1fr auto; grid-template-areas: "img info rm" "img step total";
+  gap: 6px 12px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line);
+}
+.line img { grid-area: img; width: 64px; height: 64px; object-fit: contain; border: 1px solid var(--line); border-radius: 14px; background: #fff; align-self: start; }
+.line-info { grid-area: info; display: grid; gap: 2px; }
+.line-info b { font-family: 'Glory', sans-serif; font-size: 1.1rem; color: var(--gray); line-height: 1.15; }
+.line-info span { font-size: .9rem; color: var(--gray); }
+.stepper.small { grid-area: step; width: 150px; grid-template-columns: 48px 1fr 48px; height: 48px; }
+.line-total { grid-area: total; font-family: 'Glory', sans-serif; font-weight: 800; font-size: 1.25rem; color: var(--green); text-align: right; }
+.line-remove {
+  grid-area: rm; justify-self: end; align-self: start; min-height: 44px; padding: 0 4px; border: 0; background: none; cursor: pointer;
+  color: #B3261E; font-weight: 700; text-decoration: underline; font-size: .95rem;
+}
+
+.cart-foot { padding: 14px 16px 18px; border-top: 2px solid var(--green-softer); display: grid; gap: 8px; background: #fff; }
+.cart-total { display: flex; justify-content: space-between; align-items: baseline; font-family: 'Glory', sans-serif; font-size: 1.3rem; color: var(--gray); }
+.cart-total strong { font-size: 2rem; font-weight: 800; color: var(--green); }
+.cart-foot label { font-weight: 700; color: var(--gray); }
+.cart-foot input {
+  height: 52px; padding: 0 18px; border: 2px solid var(--green-softer); border-radius: var(--pill); color: var(--brown); background: #fff;
+}
+.cart-foot input:focus { border-color: var(--green); outline: none; }
+.field-error { margin: 0; color: #B3261E; font-weight: 700; }
+.btn.send { min-height: 58px; font-size: 1.2rem; }
+.cart-note { margin: 0; font-size: .85rem; color: var(--gray); text-align: center; }
+
+@media (max-width: 600px) {
+  .cart-panel { width: 100%; }
+  .fab { left: 16px; right: 16px; justify-content: center; }
+}
